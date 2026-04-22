@@ -1,3 +1,3 @@
-module github.com/wizzymore/tinyfiledialogs
+module github.com/0penMax/tinyfiledialogs
 
 go 1.22
