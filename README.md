@@ -7,7 +7,7 @@ The C code is included and compiled together with the bindings.
 ### Installation
 
 ```
-go get -v -u github.com/wizzymore/tinyfiledialogs
+go get -v -u github.com/0penMax/tinyfiledialogs
 ```
 
-The tinyfiledialogs version used is: `v3.18.1`
+The tinyfiledialogs version used is: `vv3.21.3`
