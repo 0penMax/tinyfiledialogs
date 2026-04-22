@@ -31,14 +31,19 @@ func OpenFileDialog(title string, defaultPathOrFile string, filePatterns []strin
 	defer C.free(unsafe.Pointer(cDefaultPathOrFile))
 
 	var cFilePatterns **C.char
-	{
+	var numPatterns C.int
+	if len(filePatterns) == 0 {
+		cFilePatterns = nil
+		numPatterns = 0
+	} else {
 		aFilePatterns := make([]*C.char, len(filePatterns))
 		for i, pattern := range filePatterns {
-			cstring := C.CString(pattern)
-			aFilePatterns[i] = cstring
-			defer C.free(unsafe.Pointer(cstring))
+			cstr := C.CString(pattern)
+			aFilePatterns[i] = cstr
+			defer C.free(unsafe.Pointer(cstr))
 		}
 		cFilePatterns = &aFilePatterns[0]
+		numPatterns = C.int(len(filePatterns))
 	}
 
 	aSingleFilterDescription := C.CString(singleFilterDescription)
@@ -49,7 +54,7 @@ func OpenFileDialog(title string, defaultPathOrFile string, filePatterns []strin
 		aAllowMultipleSelection = C.int(1)
 	}
 
-	result := C.tinyfd_openFileDialog(cTitle, cDefaultPathOrFile, C.int(len(filePatterns)), cFilePatterns, aSingleFilterDescription, aAllowMultipleSelection)
+	result := C.tinyfd_openFileDialog(cTitle, cDefaultPathOrFile, numPatterns, cFilePatterns, aSingleFilterDescription, aAllowMultipleSelection)
 
 	if result != nil {
 		path = C.GoString(result)
