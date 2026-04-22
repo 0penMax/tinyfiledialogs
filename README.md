@@ -10,4 +10,4 @@ The C code is included and compiled together with the bindings.
 go get -v -u github.com/0penMax/tinyfiledialogs
 ```
 
-The tinyfiledialogs version used is: `vv3.21.3`
+The tinyfiledialogs version used is: `v3.21.3`
