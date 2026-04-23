@@ -87,15 +87,6 @@ char * tinyfd_utf16to8(wchar_t const * aUtf16string);
 /******************************************************************************************************/
 /******************************************************************************************************/
 
-/************* 3 funtions for C# (you don't need this in C or C++) : */
-char const * tinyfd_getGlobalChar(char const * aCharVariableName); /* returns NULL on error */
-int tinyfd_getGlobalInt(char const * aIntVariableName); /* returns -1 on error */
-int tinyfd_setGlobalInt(char const * aIntVariableName, int aValue); /* returns -1 on error */
-/* aCharVariableName: "tinyfd_version" "tinyfd_needs" "tinyfd_response"
-   aIntVariableName : "tinyfd_verbose" "tinyfd_silent" "tinyfd_allowCursesDialogs"
-				      "tinyfd_forceConsole" "tinyfd_assumeGraphicDisplay" "tinyfd_winUtf8"
-**************/
-
 extern char tinyfd_version[8]; /* contains tinyfd current version number */
 extern char tinyfd_needs[]; /* info about requirements */
 extern int tinyfd_verbose; /* 0 (default) or 1 : on unix, prints the command line calls */
@@ -128,14 +119,6 @@ for graphic mode:
   perl-dbus gxmessage gmessage xmessage xdialog gdialog dunst
 for console mode:
   dialog whiptail basicinput no_solution */
-
-void tinyfd_beep(void);
-
-int tinyfd_notifyPopup(
-	char const * aTitle, /* NULL or "" */
-	char const * aMessage, /* NULL or "" may contain \n \t */
-	char const * aIconType); /* "info" "warning" "error" */
-		/* return has only meaning for tinyfd_query */
 
 int tinyfd_messageBox(
 	char const * aTitle , /* NULL or "" */
@@ -174,26 +157,8 @@ char * tinyfd_selectFolderDialog(
 	char const * aDefaultPath); /* NULL or "" */
 		/* returns NULL on cancel */
 
-char * tinyfd_colorChooser(
-	char const * aTitle, /* NULL or "" */
-	char const * aDefaultHexRGB, /* NULL or "" or "#FF0000" */
-	unsigned char const aDefaultRGB[3] , /* unsigned char lDefaultRGB[3] = { 0 , 128 , 255 }; */
-	unsigned char aoResultRGB[3] ) ; /* unsigned char lResultRGB[3]; */
-		/* aDefaultRGB is used only if aDefaultHexRGB is absent */
-		/* aDefaultRGB and aoResultRGB can be the same array */
-		/* returns NULL on cancel */
-		/* returns the hexcolor as a string "#FF0000" */
-		/* aoResultRGB also contains the result */
-
-
 /************ WINDOWS ONLY SECTION ************************/
 #ifdef _WIN32
-
-/* windows only - utf-16 version */
-int tinyfd_notifyPopupW(
-	wchar_t const * aTitle, /* NULL or L"" */
-	wchar_t const * aMessage, /* NULL or L"" may contain \n \t */
-	wchar_t const * aIconType); /* L"info" L"warning" L"error" */
 
 /* windows only - utf-16 version */
 int tinyfd_messageBoxW(
@@ -234,18 +199,6 @@ wchar_t * tinyfd_openFileDialogW(
 wchar_t * tinyfd_selectFolderDialogW(
 	wchar_t const * aTitle, /* NULL or L"" */
 	wchar_t const * aDefaultPath); /* NULL or L"" */
-		/* returns NULL on cancel */
-
-/* windows only - utf-16 version */
-wchar_t * tinyfd_colorChooserW(
-	wchar_t const * aTitle, /* NULL or L"" */
-	wchar_t const * aDefaultHexRGB, /* NULL or L"#FF0000" */
-	unsigned char const aDefaultRGB[3], /* unsigned char lDefaultRGB[3] = { 0 , 128 , 255 }; */
-	unsigned char aoResultRGB[3]); /* unsigned char lResultRGB[3]; */
-		/* returns the hexcolor as a string L"#FF0000" */
-		/* aoResultRGB also contains the result */
-		/* aDefaultRGB is used only if aDefaultHexRGB is NULL */
-		/* aDefaultRGB and aoResultRGB can be the same array */
 		/* returns NULL on cancel */
 
 #endif /*_WIN32 */

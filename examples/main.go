@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/wizzymore/tinyfiledialogs"
+	"github.com/0penMax/tinyfiledialogs"
 )
 
 func main() {
