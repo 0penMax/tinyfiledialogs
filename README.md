@@ -1,8 +1,8 @@
-## tinyfiledialogs bindings for go
+## tinyfiledialogs for Go
 
-Golang bindings for [tinyfiledialogs](https://sourceforge.net/projects/tinyfiledialogs/), a simple, cross-platform library for native dialogs.
+Pure Go file dialog helpers with the same public API as this package's earlier tinyfiledialogs bindings.
 
-The C code is included and compiled together with the bindings.
+The package no longer depends on the bundled C implementation or on `cgo`. It uses platform-native dialog commands from Go.
 
 ### Installation
 
@@ -10,4 +10,8 @@ The C code is included and compiled together with the bindings.
 go get -v -u github.com/0penMax/tinyfiledialogs
 ```
 
-The tinyfiledialogs version used is: `v3.21.3`
+Supported exported dialogs:
+
+- `OpenFileDialog`
+- `SaveFileDialog`
+- `SelectFolderDialog`
